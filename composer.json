@@ -1,0 +1,40 @@
+{
+    "name": "takemo101/simple-vm",
+    "description": "Simple ViewModel Object",
+    "keywords": [
+        "php",
+        "package",
+        "viewmodel"
+    ],
+    "authors": [
+        {
+            "name": "takemo101",
+            "email": "takemo101@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/takemo101/simple-vm",
+    "license": "MIT",
+    "require": {
+        "nesbot/carbon": "^2.56.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Takemo101\\SimpleVM\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "test/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "php": "^8.0",
+        "phpunit/phpunit": "^9.5"
+    }
+}

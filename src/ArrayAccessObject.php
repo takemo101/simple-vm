@@ -9,6 +9,12 @@ use JsonSerializable;
 use ArrayIterator;
 use Traversable;
 
+/**
+ * array access object
+ *
+ * @implements IteratorAggregate<mixed>
+ * @implements ArrayAccess<string, mixed>
+ */
 class ArrayAccessObject implements ArrayAccess, IteratorAggregate, Countable, JsonSerializable
 {
     /**
@@ -81,21 +87,21 @@ class ArrayAccessObject implements ArrayAccess, IteratorAggregate, Countable, Js
     /**
      * implements ArrayAccess
      *
-     * @param string $key
+     * @param mixed $key
      * @return boolean
      */
-    public function offsetExists($key): bool
+    public function offsetExists(mixed $key): bool
     {
-        return array_key_exists($key, $this->data);
+        return isset($this->data[$key]);
     }
 
     /**
      * implements ArrayAccess
      *
-     * @param string $key
-     * @return void
+     * @param mixed $key
+     * @return mixed
      */
-    public function offsetGet($key)
+    public function offsetGet(mixed $key): mixed
     {
         return $this->offsetExists($key) ? $this->data[$key] : null;
     }
@@ -103,11 +109,11 @@ class ArrayAccessObject implements ArrayAccess, IteratorAggregate, Countable, Js
     /**
      * implements ArrayAccess
      *
-     * @param string $key
+     * @param mixed $key
      * @param mixed $value
      * @return void
      */
-    public function offsetSet($key, $value): void
+    public function offsetSet(mixed $key, mixed $value): void
     {
         $this->data[$key] = $value;
     }
@@ -115,10 +121,10 @@ class ArrayAccessObject implements ArrayAccess, IteratorAggregate, Countable, Js
     /**
      * implements ArrayAccess
      *
-     * @param string $key
+     * @param mixed $key
      * @return void
      */
-    public function offsetUnset($key): void
+    public function offsetUnset(mixed $key): void
     {
         unset($this->data[$key]);
     }
@@ -126,7 +132,7 @@ class ArrayAccessObject implements ArrayAccess, IteratorAggregate, Countable, Js
     /**
      * implements IteratorAggregate
      *
-     * @return Traversable
+     * @return ArrayIterator<string, mixed>
      */
     public function getIterator(): Traversable
     {

@@ -73,6 +73,7 @@ final class ViewModelDataAdapter
             if (!is_array($data)) {
                 throw new OutOfBoundsException('initialize data is not array');
             }
+            return $data;
         }
         return null;
     }
@@ -90,16 +91,16 @@ final class ViewModelDataAdapter
          * @var ReflectionProperty[]
          */
         $reflections = array_filter($class->getProperties(
-            ReflectionMethod::IS_PUBLIC,
+            ReflectionProperty::IS_PUBLIC,
         ), function (ReflectionProperty $property) {
             return !$this->model->hasIgnoresName($property->getName());
         });
 
-        return array_map(function (ReflectionProperty $property) {
+        return $this->arrayMapWithKey($reflections, function (ReflectionProperty $property) {
             return [
-                $property->getName() => $this->model->{$property},
+                $property->getName() => $this->model->{$property->getName()},
             ];
-        }, $reflections);
+        });
     }
 
     /**
@@ -121,11 +122,11 @@ final class ViewModelDataAdapter
             return $name == self::InitializeMethodName ? false : !$this->model->hasIgnoresName($name);
         });
 
-        return array_map(function (ReflectionMethod $method) {
+        return $this->arrayMapWithKey($reflections, function (ReflectionMethod $method) {
             return [
                 $method->getName() => $this->call($method),
             ];
-        }, $reflections);
+        });
     }
 
     /**
@@ -143,5 +144,27 @@ final class ViewModelDataAdapter
         }
 
         return $this->callableResolver->call($this->model, $name);
+    }
+
+    /**
+     * array map with key
+     *
+     * @param mixed[] $data
+     * @param callable $callback
+     * @return mixed[]
+     */
+    private function arrayMapWithKey(array $data, callable $callback): array
+    {
+        $result = [];
+
+        foreach ($data as $key => $value) {
+            $assoc = (array)call_user_func_array($callback, [$value, $key]);
+
+            foreach ($assoc as $mapKey => $mapValue) {
+                $result[$mapKey] = $mapValue;
+            }
+        }
+
+        return $result;
     }
 }

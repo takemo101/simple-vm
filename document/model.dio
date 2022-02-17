@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="nuZqmn573xlasI0PMNCp" name="クラス図">
-        <mxGraphModel dx="392" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1216" dy="1312" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -36,9 +36,9 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="69" style="edgeStyle=none;html=1;endArrow=diamondThin;endFill=0;endSize=9;" parent="1" source="8" target="2" edge="1">
+                <mxCell id="69" style="edgeStyle=none;html=1;endArrow=diamondThin;endFill=0;endSize=9;" parent="1" source="2" target="8" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="270" y="310" as="targetPoint"/>
+                        <mxPoint x="290" y="330" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="8" value="ViewModelDataAdapter" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
@@ -118,7 +118,7 @@
                 <mxCell id="39" value="+ setDefaultCallbleResolver(className: string): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="33" vertex="1">
                     <mxGeometry y="64" width="300" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" value="+ create(model: ViewModel): Transformer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="33" vertex="1">
+                <mxCell id="37" value="+ create(model: ViewModel): ViewModelDataAdapter" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="33" vertex="1">
                     <mxGeometry y="90" width="300" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="48" style="edgeStyle=none;html=1;endArrow=open;endFill=0;endSize=8;dashed=1;" parent="1" source="33" target="13" edge="1">

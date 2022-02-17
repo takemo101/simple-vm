@@ -17,7 +17,9 @@ abstract class ViewModel implements JsonSerializable
     protected static array $ignores = [
         'toArray',
         'toArrayAccessObject',
-        'hasIgnores',
+        'jsonSerialize',
+        'hasIgnoresName',
+        'of',
     ];
 
     /**
@@ -46,7 +48,7 @@ abstract class ViewModel implements JsonSerializable
 
         return in_array($name, [
             ...$ignores,
-            $this->__ignores,
+            ...$this->__ignores,
         ]);
     }
 

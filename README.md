@@ -7,6 +7,7 @@ Enjoy!
 ## How to use
 Please use as follows
 
+### Basic
 ```
 use Takemo101\SimpleVM\ViewModel;
 
@@ -75,5 +76,51 @@ var_dump($model->toArray());
 //   'c' =>
 //   string(1) "C"
 // }
+```
 
+### PHP Attribute
+You can use the PHP Attribute class.
+```
+use Takemo101\SimpleVM\ViewModel;
+use Takemo101\SimpleVM\Attribute\{
+    Ignore,
+    ChangeName,
+};
+
+/**
+ * Create a class that inherits from the ViewModel class
+ */
+class TestAttributeViewModel extends ViewModel
+{
+    /**
+     * Not output when Ignore class is set in a property or method
+     *
+     * @param string $a
+     */
+    public function __construct(
+        #[Ignore]
+        public string $a,
+    ) {
+        // public property is reflected in View
+    }
+
+    /**
+     * Setting the ChangeName class on a property or method will rename the data
+     *
+     * @return string
+     */
+     #[ChangeName('cc')]
+    public function c(): string
+    {
+        return 'C';
+    }
+}
+
+$model = TestAttributeViewModel::of('A'); // or new TestAttributeViewModel('A')
+
+var_dump($model->toArray());
+// array(3) {
+//   'cc' =>
+//   string(1) "C"
+// }
 ```

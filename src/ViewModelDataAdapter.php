@@ -2,6 +2,10 @@
 
 namespace Takemo101\SimpleVM;
 
+use Takemo101\SimpleVM\Attribute\{
+    ChangeName,
+    Ignore,
+};
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionProperty;
@@ -93,12 +97,12 @@ final class ViewModelDataAdapter
         $reflections = array_filter($class->getProperties(
             ReflectionProperty::IS_PUBLIC,
         ), function (ReflectionProperty $property) {
-            return !$this->model->hasIgnoresName($property->getName());
+            return !$this->isIgnoresByReflection($property);
         });
 
         return $this->arrayMapWithKey($reflections, function (ReflectionProperty $property) {
             return [
-                $property->getName() => $this->model->{$property->getName()},
+                $this->getDataNameByReflection($property) => $this->model->{$property->getName()},
             ];
         });
     }
@@ -118,13 +122,12 @@ final class ViewModelDataAdapter
         $reflections = array_filter($class->getMethods(
             ReflectionMethod::IS_PUBLIC,
         ), function (ReflectionMethod $method) {
-            $name = $method->getName();
-            return $name == self::InitializeMethodName ? false : !$this->model->hasIgnoresName($name);
+            return $method->getName() == self::InitializeMethodName ? false : !$this->isIgnoresByReflection($method);
         });
 
         return $this->arrayMapWithKey($reflections, function (ReflectionMethod $method) {
             return [
-                $method->getName() => $this->call($method),
+                $this->getDataNameByReflection($method) => $this->call($method),
             ];
         });
     }
@@ -166,5 +169,40 @@ final class ViewModelDataAdapter
         }
 
         return $result;
+    }
+
+    /**
+     * is ignores or method by reflection
+     *
+     * @param ReflectionProperty|ReflectionMethod $reflection
+     * @return boolean
+     */
+    private function isIgnoresByReflection(ReflectionProperty|ReflectionMethod $reflection): bool
+    {
+        if ($this->model->hasIgnoresName($reflection->getName())) {
+            return true;
+        }
+
+        return count($reflection->getAttributes(Ignore::class)) > 0;
+    }
+
+    /**
+     * get data name by reflection
+     *
+     * @param ReflectionProperty|ReflectionMethod $reflection
+     * @return string
+     */
+    private function getDataNameByReflection(ReflectionProperty|ReflectionMethod $reflection): string
+    {
+        $attributes = $reflection->getAttributes(ChangeName::class);
+        foreach ($attributes as $attribute) {
+            /**
+             * @var ChangeName
+             */
+            $name = $attribute->newInstance();
+            return $name->getChangeName();
+        }
+
+        return $reflection->getName();
     }
 }

@@ -1,13 +1,15 @@
 #### for php ####
 .PHONY: start
 start:
-	docker-compose up -d php composer
+	docker-compose up -d php
 
-shell-php:
+.PHONY: shell
+shell:
 	docker-compose exec php bash
 
-shell-composer:
-	docker-compose exec composer bash
+.PHONY: stop
+stop:
+	docker-compose stop php
 
 .PHONY: install
 install:

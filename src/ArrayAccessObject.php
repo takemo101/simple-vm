@@ -18,14 +18,22 @@ use Traversable;
 class ArrayAccessObject implements ArrayAccess, IteratorAggregate, Countable, JsonSerializable
 {
     /**
+     * @var mixed[]
+     */
+    protected array $data;
+
+    /**
      * constructor
      *
      * @param mixed[] $data
      */
     public function __construct(
-        protected array $data = [],
+        array $data = [],
     ) {
-        //
+        $this->data = [];
+        foreach ($data as $key => $value) {
+            $this->data[$key] = is_array($value) ? new static($value) : $value;
+        }
     }
 
     /**

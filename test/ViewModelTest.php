@@ -92,6 +92,13 @@ class ViewModelTest extends TestCase
         );
         $this->assertFalse(isset($data->g));
         $this->assertTrue(is_null($data->g));
+
+        $array = $data->toArray();
+
+        $this->assertEquals(
+            $array['c']->cc,
+            'C',
+        );
     }
 }
 

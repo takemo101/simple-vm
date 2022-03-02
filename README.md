@@ -8,7 +8,7 @@ Enjoy!
 Please use as follows
 
 ### Basic
-```
+```php
 use Takemo101\SimpleVM\ViewModel;
 
 /**
@@ -80,7 +80,7 @@ var_dump($model->toArray());
 
 ### PHP Attribute
 You can use the PHP Attribute class.
-```
+```php
 use Takemo101\SimpleVM\ViewModel;
 use Takemo101\SimpleVM\Attribute\{
     Ignore,

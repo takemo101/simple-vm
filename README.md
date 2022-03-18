@@ -1,5 +1,9 @@
 # Simple ViewModel Object
 
+[![Testing](https://github.com/takemo101/simple-vm/actions/workflows/testing.yml/badge.svg)](https://github.com/takemo101/simple-vm/actions/workflows/testing.yml)
+[![PHPStan](https://github.com/takemo101/simple-vm/actions/workflows/phpstan.yml/badge.svg)](https://github.com/takemo101/simple-vm/actions/workflows/phpstan.yml)
+[![PHPStan](https://github.com/takemo101/simple-vm/actions/workflows/phpstan.yml/badge.svg)](https://github.com/takemo101/simple-vm/actions/workflows/phpstan.yml)
+
 The Simple VM allows you to simply create a ViewModel object.   
 By using the ViewModel object, you can convey appropriate data to the View.  
 Enjoy!  
@@ -109,7 +113,7 @@ class TestAttributeViewModel extends ViewModel
      *
      * @return string
      */
-     #[ChangeName('cc')]
+    #[ChangeName('cc')]
     public function c(): string
     {
         return 'C';

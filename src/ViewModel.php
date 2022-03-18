@@ -82,15 +82,4 @@ abstract class ViewModel implements JsonSerializable
     {
         return new ArrayAccessObject($this->toArray());
     }
-
-    /**
-     * factory
-     *
-     * @param mixed ...$parameters
-     * @return static
-     */
-    public static function of(mixed ...$parameters): static
-    {
-        return new static(...$parameters);
-    }
 }

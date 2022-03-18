@@ -65,7 +65,7 @@ class TestViewModel extends ViewModel
     }
 }
 
-$model = TestViewModel::of('A', 2); // or new TestViewModel('A', 2)
+$model = new TestViewModel('A', 2);
 
 var_dump($model->toArray());
 // array(3) {
@@ -116,7 +116,7 @@ class TestAttributeViewModel extends ViewModel
     }
 }
 
-$model = TestAttributeViewModel::of('A'); // or new TestAttributeViewModel('A')
+$model = new TestAttributeViewModel('A');
 
 var_dump($model->toArray());
 // array(3) {

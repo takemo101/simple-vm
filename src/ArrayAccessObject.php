@@ -27,7 +27,7 @@ class ArrayAccessObject implements ArrayAccess, IteratorAggregate, Countable, Js
      *
      * @param mixed[] $data
      */
-    public function __construct(
+    final public function __construct(
         array $data = [],
     ) {
         $this->data = [];

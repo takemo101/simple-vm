@@ -20,7 +20,7 @@ class AttributeTest extends TestCase
      */
     public function createViewModelWithAttribute__OK()
     {
-        $model = TestAttributeViewModel::of(
+        $model = new TestAttributeViewModel(
             'A',
             2,
             [
@@ -62,7 +62,7 @@ class AttributeTest extends TestCase
     public function createViewModelWithAttribute__NG()
     {
         $this->expectException(InvalidArgumentException::class);
-        $model = TestChangeNameViewModel::of(
+        $model = new TestChangeNameViewModel(
             'A',
         );
 

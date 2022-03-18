@@ -49,16 +49,16 @@ final class ViewModelDataAdapter
         // view model method data
         $methods = self::toMethodData();
 
-        $result = [
-            ...$properties,
-            ...$methods,
-        ];
+        $result = array_merge(
+            $properties,
+            $methods,
+        );
 
         if ($data = $this->toInitializeMethodData()) {
-            return [
-                ...$data,
-                ...$result,
-            ];
+            return array_merge(
+                $data,
+                $result,
+            );
         }
 
         return $result;

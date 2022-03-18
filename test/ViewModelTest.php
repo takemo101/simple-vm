@@ -15,7 +15,7 @@ class ViewModelTest extends TestCase
      */
     public function createViewModel__OK()
     {
-        $model = TestViewModel::of(
+        $model = new TestViewModel(
             'A',
             2,
             [
@@ -56,7 +56,7 @@ class ViewModelTest extends TestCase
      */
     public function createArrayAccessObject__OK()
     {
-        $model = TestViewModel::of(
+        $model = new TestViewModel(
             'A',
             2,
             [
